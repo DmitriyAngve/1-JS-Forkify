@@ -1,0 +1,29 @@
+{
+  "name": "forkify",
+  "version": "1.0.0",
+  "description": "Recipe application",
+  "scripts": {
+    "start": "parcel index.html",
+    "build": "parcel build index.html --dist-dir dist --public-url ./"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DmitriyAngve/Forkify.git"
+  },
+  "author": "Angve",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/DmitriyAngve/Forkify/issues"
+  },
+  "homepage": "https://github.com/DmitriyAngve/Forkify#readme",
+  "devDependencies": {
+    "@parcel/transformer-sass": "^2.8.0",
+    "parcel": "^2.8.0",
+    "sass": "^1.56.1"
+  },
+  "dependencies": {
+    "core-js": "^3.26.1",
+    "fracty": "^1.0.11",
+    "regenerator-runtime": "^0.13.11"
+  }
+}
