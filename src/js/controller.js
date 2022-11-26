@@ -135,10 +135,6 @@ const controlAddRecipe = async function (newRecipe) {
 
 // And function and data flow. As we start to programm then the init() runs and it will then immediately run addHandlerRender. AddHandlerRender listening for events in the "recipeView.js". As we call addHandlerRender we pass in the controller function (controlRecipes) / handler function that we want to get executed as soon as the event happens. Then receive that function as being called handler and so that's what we then call as soon as the event happens
 
-const newFeature = function () {
-  console.log('Welcome to the application');
-};
-
 const init = function () {
   bookmarksView.addHandlerRender(controlAddBookmarks);
   recipeView.addHandlerRender(controlRecipes);
@@ -146,7 +142,6 @@ const init = function () {
   recipeView.addHandlerAddBookmark(controlAddBookmark);
   searchView.addHandlerSearch(controlSearchResults);
   paginationView.addHandlerClick(controlPagination); // call addHandlerClick who called addEventListener on pagination element
-  newFeature();
 };
 addRecipeView.addHandlerUpload(controlAddRecipe);
 init();
