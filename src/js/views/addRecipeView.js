@@ -21,9 +21,8 @@ class AddRecipeView extends View {
     this._window.classList.toggle('hidden');
   }
 
-  // When this click happens on the button open all that will happen is really for the window to show. We can simply run this function here as soon as this object is created
   _addHandlerShowWindow() {
-    this._btnOpen.addEventListener('click', this.toggleWindow.bind(this)); // this points to the current object. This keyword inside of toggleWindow function would be the button on which the event listener is attached to
+    this._btnOpen.addEventListener('click', this.toggleWindow.bind(this));
   }
 
   _addHandlerHideWindow() {
@@ -34,9 +33,9 @@ class AddRecipeView extends View {
   addHandlerUpload(handler) {
     this._parentElement.addEventListener('submit', function (e) {
       e.preventDefault();
-      const dataArr = [...new FormData(this)]; // returns weird array, but we can spread it
-      const data = Object.fromEntries(dataArr); // It method takes an array of entries and convert it to an object
-      handler(data); // this handler function logged to the console
+      const dataArr = [...new FormData(this)];
+      const data = Object.fromEntries(dataArr);
+      handler(data);
     });
   }
 
