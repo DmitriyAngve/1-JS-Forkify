@@ -12,11 +12,10 @@ class SearchView {
     this._parentEl.querySelector('.search__field').value = '';
   }
 
-  // Event listener for click "Enter" button or search
   addHandlerSearch(handler) {
     this._parentEl.addEventListener('submit', function (e) {
       e.preventDefault();
-      handler(); // this handler function should be the control searchResult function
+      handler();
     });
   }
 }

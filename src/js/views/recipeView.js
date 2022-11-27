@@ -24,7 +24,6 @@ class RecipeView extends View {
   }
 
   addHandlerAddBookmark(handler) {
-    // element with class which we want take does not exist yet by the time the application is loaded (use event delegation)
     this._parentElement.addEventListener('click', function (e) {
       const btn = e.target.closest('.btn--bookmark');
       if (!btn) return;
@@ -142,7 +141,4 @@ class RecipeView extends View {
   }
 }
 
-export default new RecipeView(); // create new object based on class here and export him into the controller.js
-
-// ${this._data.bookmarked ? '-fill' : ''}
-// ${this._data.bookmarked ? '-fill' : ''}
+export default new RecipeView();

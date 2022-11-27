@@ -17,7 +17,7 @@ export default class View {
     if (!data || (Array.isArray(data) && data.length === 0))
       return this.renderError();
 
-    this._data = data; // render method took data(recipe) from "recipeView.render(model.state.recipe);" and stores it in that data
+    this._data = data;
     const markup = this._generateMarkup();
 
     if (!render) return markup;
@@ -27,38 +27,22 @@ export default class View {
   }
 
   update(data) {
-    // if (!data || (Array.isArray(data) && data.length === 0))
-    //   return this.renderError();
-
     this._data = data;
-    const newMarkup = this._generateMarkup(); // String of HTML
-
-    // Convert Markup string to a DOM object that's living in a memory and that we can then use to compare with the actual DOM that's on the page
-    // ".createRange()" method returns a new Range object.
-    // ".createContextualFragment()" method, which convert a string into real DOM Node objects
+    const newMarkup = this._generateMarkup();
     const newDOM = document.createRange().createContextualFragment(newMarkup);
     const newElements = Array.from(newDOM.querySelectorAll('*'));
     const curElements = Array.from(this._parentElement.querySelectorAll('*'));
-    // console.log(curElements);
-    // console.log(newElements);
 
-    // Compare newDOM and oldDOM
-    // ".isEqualNode()" method for compare nodes
     newElements.forEach((newEl, i) => {
       const curEl = curElements[i];
-      // console.log(curEl, newEl.isEqualNode(curEl));
 
-      // Update changed TEXT
-      // "NodeValue" property of the Node interface returns or sets the value of the current node. Check for same textContent
       if (
         !newEl.isEqualNode(curEl) &&
         newEl.firstChild?.nodeValue.trim() !== ''
       ) {
-        // console.log('💥', newEl.firstChild.nodeValue.trim());
         curEl.textContent = newEl.textContent;
       }
 
-      // Update changed ATTRIBUTES (replace attributes from the curEL to the newEl)
       if (!newEl.isEqualNode(curEl))
         Array.from(newEl.attributes).forEach(attr =>
           curEl.setAttribute(attr.name, attr.value)

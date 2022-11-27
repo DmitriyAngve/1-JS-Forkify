@@ -9,20 +9,13 @@ import addRecipeView from './views/addRecipeView.js';
 
 import 'core-js/stable'; // for polyfiling everything else
 import 'regenerator-runtime/runtime'; // for polyfiling async await
-// import { search } from 'core-js/fn/symbol';
-
-// From Parcel
-// if (module.hot) {
-//   module.hot.accept();
-// }
 
 const controlRecipes = async function () {
   try {
-    const id = window.location.hash.slice(1); // change the hash id with slice 2 first element
+    const id = window.location.hash.slice(1);
 
-    // guard clause (if no id)
     if (!id) return;
-    recipeView.renderSpinner(); // Render spinner
+    recipeView.renderSpinner();
 
     // 1) Update results view to mark selected search result
     resultsView.update(model.getSearchResultsPage());
@@ -32,7 +25,6 @@ const controlRecipes = async function () {
 
     // 3) Loading recipe
     await model.loadRecipe(id);
-    // async function and it is going to return a promise (here we have to avoid that promise before we can move on in the next step)
 
     // 4) Rendering recipe
     recipeView.render(model.state.recipe);
@@ -55,11 +47,10 @@ const controlSearchResults = async function () {
 
     // 3) Render results
 
-    // resultsView.render(model.state.search.results);
     resultsView.render(model.getSearchResultsPage());
 
     // 4) Render the inital pagination buttons
-    paginationView.render(model.state.search); // model.state.search - the entire object
+    paginationView.render(model.state.search);
   } catch (err) {
     console.log(err);
   }
@@ -79,7 +70,7 @@ const controlServings = function (newServings) {
   model.updateServings(newServings);
 
   // Update the recipe view
-  // recipeView.render(model.state.recipe);
+
   recipeView.update(model.state.recipe);
 };
 
@@ -119,7 +110,7 @@ const controlAddRecipe = async function (newRecipe) {
 
     // Change ID in URL (after reloading the page)
     window.history.pushState(null, '', `#${model.state.recipe.id}`);
-    window.history.back(); // back to the last page
+    window.history.back();
 
     // Close form window (use public toggle method)
     setTimeout(function () {
@@ -133,15 +124,13 @@ const controlAddRecipe = async function (newRecipe) {
   location.reload();
 };
 
-// And function and data flow. As we start to programm then the init() runs and it will then immediately run addHandlerRender. AddHandlerRender listening for events in the "recipeView.js". As we call addHandlerRender we pass in the controller function (controlRecipes) / handler function that we want to get executed as soon as the event happens. Then receive that function as being called handler and so that's what we then call as soon as the event happens
-
 const init = function () {
   bookmarksView.addHandlerRender(controlAddBookmarks);
   recipeView.addHandlerRender(controlRecipes);
   recipeView.addHandlerUpdateServings(controlServings);
   recipeView.addHandlerAddBookmark(controlAddBookmark);
   searchView.addHandlerSearch(controlSearchResults);
-  paginationView.addHandlerClick(controlPagination); // call addHandlerClick who called addEventListener on pagination element
+  paginationView.addHandlerClick(controlPagination);
 };
 addRecipeView.addHandlerUpload(controlAddRecipe);
 init();

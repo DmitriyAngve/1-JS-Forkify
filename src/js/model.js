@@ -141,7 +141,7 @@ export const uploadRecipe = async function (newRecipe) {
       .filter(entry => entry[0].startsWith('ingredient') && entry[1] !== '')
       .map(ing => {
         const ingArr = ing[1].split(',').map(el => el.trim());
-        // const ingArr = ing[1].replaceAll(' ', '').split(',');
+
         if (ingArr.length !== 3)
           throw new Error('Wrong ingredient format! Please use correct format');
 
@@ -160,13 +160,10 @@ export const uploadRecipe = async function (newRecipe) {
       ingredients,
     };
 
-    const data = await AJAX(`${API_URL}?key=${KEY}`, recipe); // sendJSON has two parameters
-    state.recipe = createRecipeObject(data); // data that we just received
-    addBookmark(state.recipe); // add to your recipe to bookmark
+    const data = await AJAX(`${API_URL}?key=${KEY}`, recipe);
+    state.recipe = createRecipeObject(data);
+    addBookmark(state.recipe);
   } catch (err) {
     throw err;
   }
 };
-
-// replaceAll(' ', '') - replace all spaces into empty string
-// ing[1] - [1] - second element of the entry
