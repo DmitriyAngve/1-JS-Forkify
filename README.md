@@ -12,3 +12,6 @@ About App:
 - Unbookmarking is also available
 - In addition, the user can add a recipe by clicking on the button and filling out the form. All recipes that you upload yourself will be visible only to you (marked with an icon). User can find your recipe by searching like others
   Thanks for reading this entire post.
+
+<h3>npm run build</h3>
+<h3>npm run start</h3>
