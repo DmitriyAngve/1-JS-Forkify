@@ -31,6 +31,7 @@ const createRecipeObject = function (data) {
 };
 // "...(recipe.key && { key: recipe.key })" and operator short-circuits. If recipe.key a faulty value, so if it doesn't exist, then nothing happens here. If recipe.key is some value, then the second part of the operator is executed and returned (" { key: recipe.key }" - is going to be returned). "..." - spread this object to put the values (like a recipe.key: key, only if doesn't exist)
 
+
 // added "id" ias argument in function
 export const loadRecipe = async function (id) {
   try {
@@ -49,7 +50,6 @@ export const loadRecipe = async function (id) {
     throw err; // We will then have access to exact same error object, as we have in code above ("console.error(`${err} 💥💥💥💥`)")
   }
 };
-
 // Search Implementing
 export const loadSearchResults = async function (query) {
   try {
