@@ -3,6 +3,7 @@
 This application is all about searching for recipes and dispaying them, in user interface. In this app I used several libraries like "Fracty", "Parcel". I also used a SASS for CSS. I tried to make the architecture similar to React application with 'imports" / "exports" and Functions, like React Components.
 About App:
 
+- The app uses the Food2Fork website API.
 - The user can search any recipe in search bar
 - I've added pagination if there are more than 10 search results.
 - To display the recipe, the user can click on the recipe and see the description.
